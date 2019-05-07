@@ -3,19 +3,29 @@ from .models import Todo
 from rest_framework.views import APIView
 from rest_framework.response import  Response
 from rest_framework import status
-from .serializers import employeesSerializer
+from .serializers import toDoSerializer
+from django.db.models import Q
+from rest_framework import generics, mixins
+
 
 # Create your views here.
 
 class toDoList(APIView):
 
     def get(self, request):
-        employees1 = Todo.objects.all()
-        serializer = employeesSerializer(employees1, many=True)
+        todo1 = Todo.objects.all()
+        serializer = toDoSerializer(todo1, many=True)
         return Response(serializer.data)
 
-    def post(self):
-        pass
+
+
+
+class toDoRudView(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field            = 'pk'
+    serializer_class        = toDoSerializer
+
+    def get_queryset(self):
+        return Todo.objects.all()
 
 
 

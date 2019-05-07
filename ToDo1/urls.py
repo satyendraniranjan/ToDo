@@ -21,5 +21,6 @@ from webapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/', views.toDoList.as_view()),
+    path('todo/<int:pk>/', views.toDoRudView.as_view(), name='todo-rud')
 
 ]
