@@ -1,9 +1,19 @@
 from django.db import models
+from django.utils import timezone
 
-class employees(models.Model):
-    firstname = models.CharField(max_length=10)
-    lastname = models.CharField(max_length=10)
-    emp_id = models.IntegerField()
+
+class Todo(models.Model):
+
+
+    CHOICES1 = (
+        ('In Progress', 'In Progress'),
+        ('Done', 'Done'),
+
+    )
+
+    State = models.CharField(max_length=255, choices=CHOICES1,null=True, blank=True)
+    Due_Date = models.DateField(default=timezone.now)
+    Text = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.firstname
+        return self.State

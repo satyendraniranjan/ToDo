@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import employees
+from .models import Todo
 
 class employeesSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = employees
+        model = Todo
 #        fields = {'firstname','lastname'}
         fields = '__all__'

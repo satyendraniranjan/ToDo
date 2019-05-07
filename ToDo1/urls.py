@@ -20,6 +20,6 @@ from webapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('employees/', views.employeeList.as_view()),
+    path('todo/', views.toDoList.as_view()),
 
 ]
