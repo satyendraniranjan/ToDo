@@ -8,6 +8,7 @@ class toDoSerializer(serializers.ModelSerializer):
 #        fields = {'firstname','lastname'}
         fields = [
             'id',
+            'name',
             'State',
             'Due_Date',
             'Text',
