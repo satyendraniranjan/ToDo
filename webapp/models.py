@@ -17,3 +17,6 @@ class Todo(models.Model):
 
     def __str__(self):
         return self.State
+
+    def get_data(self):
+        return self.State + ' Due Date ' + str(self.Due_Date) + ' Text ' + self.Text
