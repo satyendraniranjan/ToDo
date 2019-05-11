@@ -78,3 +78,58 @@ class CreateNewTodoTest(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+class UpdateSingleTodoTest(TestCase):
+    """ Test module for updating an existing puppy record """
+
+    def setUp(self):
+        self.casper = Todo.objects.create(
+            name='casper', State='Done', Due_Date='2019-05-04', Text='Testing Done')
+        self.muff = Todo.objects.create(
+            name='muff', State='Done', Due_Date='2019-05-04', Text='Testing Done')
+        self.valid_payload = {
+            'name': 'muff',
+            'State': 'In Progress',
+            'Due_Date': '2019-05-03',
+            'Text': 'White123'
+        }
+        self.invalid_payload = {
+            'name': '',
+            'State': '',
+            'Due_Date': '',
+            'Text': 'White123'
+        }
+
+    def test_valid_update_todo(self):
+        response = client.put(
+            reverse('get_delete_update_todos', kwargs={'pk': self.casper.pk}),
+            data=json.dumps(self.valid_payload),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_invalid_update_todo(self):
+        response = client.put(
+            reverse('get_delete_update_todos', kwargs={'pk': self.casper.pk}),
+            data=json.dumps(self.invalid_payload),
+            content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class DeleteSingleToDoTest(TestCase):
+    """ Test module for deleting an existing puppy record """
+
+    def setUp(self):
+        self.casper = Todo.objects.create(
+            name='casper', State='Done', Due_Date='2019-05-04', Text='Testing Done' )
+        self.muffin = Todo.objects.create(
+            name='muff', State='Done', Due_Date='2019-05-04', Text='Testing Done')
+
+    def test_valid_delete_todo(self):
+        response = client.delete(
+            reverse('get_delete_update_todos', kwargs={'pk': self.muffin.pk}))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_invalid_delete_todo(self):
+        response = client.delete(
+            reverse('get_delete_update_todos', kwargs={'pk': 30}))
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

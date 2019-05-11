@@ -7,7 +7,7 @@ from ..serializers import toDoSerializer
 
 client = Client()
 class todoTest(TestCase):
-    """ Test module for Puppy model """
+    """ Test module for todos model """
 
     def setUp(self):
         Todo.objects.create(
