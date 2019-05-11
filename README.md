@@ -3,7 +3,7 @@ Build TODO App on django Rest Api.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 
 ### Installing
@@ -46,7 +46,7 @@ command-line
 
 ## Running the tests
 
-I have run 10 tests for this project. All test is inside of tests folder in webapp. Inside this there are two files test_models, test_views.
+All test is inside of tests folder in webapp. Inside this there are two files test_models, test_views.
 ```
 C:\Users\esatnir\Videos\ToDo1\webapp\tests
 ```
